@@ -63,7 +63,7 @@ public class Controlador_Estudiantes implements ActionListener{
             case EDITAR: if(verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
                 JOptionPane.showMessageDialog(null,"Estudiante No Existente");
             } else{
-                //editarNombre(manipulaEstudiante.getNuevoNombre());
+                editarNombre(JOptionPane.showInputDialog("Digite el nuevo nombre del estudiante: "));
                 JOptionPane.showMessageDialog(null,"Nombre Modificado Exitosamente");
             }
             break;

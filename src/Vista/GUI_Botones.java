@@ -89,7 +89,7 @@ public class GUI_Botones extends javax.swing.JPanel {
             dev = Controlador_Estudiantes.BUSCAR;
         } else if(this.btn_editar.equals(obj)){
             dev = Controlador_Estudiantes.EDITAR;
-            JOptionPane.showInputDialog("Digite el nuevo nombre del estudiante: ");
+            //JOptionPane.showInputDialog("Digite el nuevo nombre del estudiante: ");
         } else if(this.btn_eliminar.equals(obj)){
             dev = Controlador_Estudiantes.ELIMINAR;
         }
