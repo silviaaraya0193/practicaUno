@@ -42,19 +42,20 @@ public class Controlador_Estudiantes implements ActionListener{
             case AGREGAR:if(manipulaEstudiante.txtLlenos()){
                 if(verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
                 addEstudiante(manipulaEstudiante.getEstudiante());
-                    System.out.println("agregados: \n"+listaEstudiantes());
+                    //System.out.println("agregados: \n"+listaEstudiantes());
                 JOptionPane.showMessageDialog(null,"Estudiante Registrado");
                 manipulaEstudiante.limpiarCampos();
             } else{
                 JOptionPane.showMessageDialog(null,"Error, Estudiante ya Existente");
+                manipulaEstudiante.limpiarCampos();
             }
             }
             break;
             case ELIMINAR: if(manipulaEstudiante.txtCarnet()){
                // System.out.println("entra a eliminar carnet lleno");//entra hasta aqui
                 if(verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
-                    
                 JOptionPane.showMessageDialog(null,"Error, Estudiante No Existente");
+                manipulaEstudiante.limpiarCampos();
                 //}
             } else {
                 deleteEstudiante(manipulaEstudiante.getTxtCarnet());
@@ -78,10 +79,11 @@ public class Controlador_Estudiantes implements ActionListener{
             case EDITAR: if(manipulaEstudiante.txtCarnet()){
                 if(verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
                 JOptionPane.showMessageDialog(null,"Estudiante No Existente");
+                manipulaEstudiante.limpiarCampos();
             } else if(manipulaEstudiante.txtCarnet()){
                 editarNombre(JOptionPane.showInputDialog("Digite el nuevo nombre del estudiante: "));
                 JOptionPane.showMessageDialog(null,"Nombre Modificado Exitosamente");
-                    System.out.println("lista nombre modificado: "+listaEstudiantes());
+                    //System.out.println("lista nombre modificado: "+listaEstudiantes());
                 manipulaEstudiante.limpiarCampos();
             }
             }
