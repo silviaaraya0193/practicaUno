@@ -54,7 +54,27 @@ public class ManipulaEstudiantes extends javax.swing.JFrame {
         String numero = txt_carnet.getText();
         return numero;
     }
-    
+    public boolean txtLlenos(){
+        if(txt_nombre.getText() != null){
+            if(txt_carnet.getText() != null){
+                if(txt_correo.getText()!= null){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public void limpiarCampos(){
+        txt_nombre.setText("");
+        txt_carnet.setText("");
+        txt_correo.setText("");
+    }
+    public boolean txtCarnet(){
+            if(txt_carnet.getText() != null){
+                return true;    
+        }
+        return false;
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

@@ -39,32 +39,51 @@ public class Controlador_Estudiantes implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         int codigo = this.manipulaEstudiante.get_CodigoPorFuente(e.getSource());
         switch(codigo){
-            case AGREGAR: if(verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
+            case AGREGAR:if(manipulaEstudiante.txtLlenos()){
+                if(verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
                 addEstudiante(manipulaEstudiante.getEstudiante());
+                    System.out.println("agregados: \n"+listaEstudiantes());
                 JOptionPane.showMessageDialog(null,"Estudiante Registrado");
+                manipulaEstudiante.limpiarCampos();
             } else{
                 JOptionPane.showMessageDialog(null,"Error, Estudiante ya Existente");
             }
+            }
             break;
-            case ELIMINAR: if(verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
+            case ELIMINAR: if(manipulaEstudiante.txtCarnet()){
+               // System.out.println("entra a eliminar carnet lleno");//entra hasta aqui
+                if(verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
+                    
                 JOptionPane.showMessageDialog(null,"Error, Estudiante No Existente");
-            } else{
+                //}
+            } else {
                 deleteEstudiante(manipulaEstudiante.getTxtCarnet());
                 JOptionPane.showMessageDialog(null,"Estudiante Eliminado");
+                //System.out.println("lista luego de eliminar: \n"+listaEstudiantes());
+                manipulaEstudiante.limpiarCampos();
+            }
             }
             break;
-            case BUSCAR: if(verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
+            case BUSCAR: if(manipulaEstudiante.txtCarnet()){
+                if(verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
                 JOptionPane.showMessageDialog(null,"Estudiante No Existente");
-            } else{
+                manipulaEstudiante.limpiarCampos();
+             }else{ 
                 JOptionPane.showMessageDialog(null,buscarEstudiante(manipulaEstudiante.getTxtCarnet()));
-                JOptionPane.showMessageDialog(null,listaEstudiantes());
+                //JOptionPane.showMessageDialog(null,listaEstudiantes());
+                manipulaEstudiante.limpiarCampos();
+            } 
             }
             break;
-            case EDITAR: if(verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
+            case EDITAR: if(manipulaEstudiante.txtCarnet()){
+                if(verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
                 JOptionPane.showMessageDialog(null,"Estudiante No Existente");
-            } else{
+            } else if(manipulaEstudiante.txtCarnet()){
                 editarNombre(JOptionPane.showInputDialog("Digite el nuevo nombre del estudiante: "));
                 JOptionPane.showMessageDialog(null,"Nombre Modificado Exitosamente");
+                    System.out.println("lista nombre modificado: "+listaEstudiantes());
+                manipulaEstudiante.limpiarCampos();
+            }
             }
             break;
             }
@@ -97,7 +116,9 @@ public class Controlador_Estudiantes implements ActionListener{
     //metodo para editar estudiante
     public void editarNombre(String nombreNuevo){
         for(int i =0; i < array.size(); i++){
+            if(array.get(i).getCarnet().equalsIgnoreCase(manipulaEstudiante.getTxtCarnet())){
             array.get(i).setNombre(nombreNuevo);
+            }
         }
     }
     
