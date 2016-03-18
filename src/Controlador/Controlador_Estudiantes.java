@@ -142,5 +142,14 @@ public class Controlador_Estudiantes implements ActionListener{
         return true;//el carnet es diferente
     }//fin del metodo que verifica si existe el estudiante ya registrado
     
-   
+   //metodo para consultar estudiante por carnet
+    public String consultarCarnet(String carnet){
+        String estudiante="";
+        for(int i =0; i< array.size(); i++){
+            if(array.get(i).getCarnet().equalsIgnoreCase(carnet)){
+                estudiante = array.get(i).toString();
+            }
+        }
+        return estudiante;
+    }
 }
