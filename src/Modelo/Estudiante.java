@@ -20,6 +20,9 @@ public class Estudiante {
         carnet = carne;
         email = mail;   
     }
+
+    public Estudiante() {
+    }
     
 
     public String getNombre() {
@@ -50,5 +53,7 @@ public class Estudiante {
     public String toString() {
         return "Estudiante: \n" + "Name:" + nombre + ", Carnet: " + carnet + ", E-mail: " + email + "\n";
     }
-    
+    public void estudiante(Estudiante estudiante){
+        
+    }
 }

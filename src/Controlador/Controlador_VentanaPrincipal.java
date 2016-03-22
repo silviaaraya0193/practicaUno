@@ -6,6 +6,8 @@
 
 package Controlador;
 import Vista.ManipulaEstudiantes;
+import Vista.VentanaConsulta;
+import Vista.VentanaReportes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 /**
@@ -15,9 +17,13 @@ import java.awt.event.ActionListener;
 public class Controlador_VentanaPrincipal implements ActionListener{
     
     private ManipulaEstudiantes manipuladorEstudiantes;
+    private VentanaReportes ventanaReportes;
+    private VentanaConsulta ventanaConsulta;
     
     public Controlador_VentanaPrincipal(){
         this.manipuladorEstudiantes = new ManipulaEstudiantes();
+        this.ventanaReportes = new VentanaReportes();
+        this.ventanaConsulta = new VentanaConsulta();
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -26,6 +32,12 @@ public class Controlador_VentanaPrincipal implements ActionListener{
         }
         if(e.getActionCommand().equalsIgnoreCase("Manipula Estudiantes")){
             manipuladorEstudiantes.setVisible(true);
+        }
+        if(e.getActionCommand().equalsIgnoreCase("Consulta Estudiantes")){
+            ventanaConsulta.setVisible(true);
+        }
+        if(e.getActionCommand().equalsIgnoreCase("Reporte Estudiantes")){
+            ventanaReportes.setVisible(true);
         }
     }
     

@@ -8,8 +8,7 @@ package Vista;
 
 import Controlador.Controlador_Estudiantes;
 import Modelo.Estudiante;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+import Modelo.ManejoEstudiantes;
 
 /**
  *
@@ -21,10 +20,12 @@ public class ManipulaEstudiantes extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     private Controlador_Estudiantes ce;
+    private ManejoEstudiantes me;
     
     public ManipulaEstudiantes() {
         initComponents();
         ce = new Controlador_Estudiantes(this);
+        me = new ManejoEstudiantes(this);
         this.gUI_Botones1.agregar_evento(ce);
         this.setLocationRelativeTo(null);
         
@@ -78,6 +79,16 @@ public class ManipulaEstudiantes extends javax.swing.JFrame {
         }
         return false;
     }
+    public String getNombre(){
+        String name ="";
+        name = txt_nombre.getText();
+        return name;
+    }
+     public String getCorreo(){
+        String correo ="";
+        correo = txt_correo.getText();
+        return correo;
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -93,9 +104,7 @@ public class ManipulaEstudiantes extends javax.swing.JFrame {
         txt_nombre = new javax.swing.JTextField();
         txt_carnet = new javax.swing.JTextField();
         txt_correo = new javax.swing.JTextField();
-        btn_consulta = new javax.swing.JButton();
-        btn_reportes = new javax.swing.JButton();
-        btn_consultarTodo = new javax.swing.JButton();
+        lbl_mensaje = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -135,15 +144,18 @@ public class ManipulaEstudiantes extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_carnet)
-                    .addComponent(lbl_correo)
-                    .addComponent(lbl_nombre))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txt_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                    .addComponent(txt_carnet)
-                    .addComponent(txt_correo))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbl_mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_carnet)
+                            .addComponent(lbl_correo)
+                            .addComponent(lbl_nombre))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                            .addComponent(txt_carnet)
+                            .addComponent(txt_correo))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -157,36 +169,14 @@ public class ManipulaEstudiantes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_carnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_carnet))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_correo)
                     .addComponent(txt_correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbl_mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        btn_consulta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_consulta.setText("Consultar Por Carnet");
-        btn_consulta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_consultaActionPerformed(evt);
-            }
-        });
-
-        btn_reportes.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_reportes.setText("Reportes");
-        btn_reportes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_reportesActionPerformed(evt);
-            }
-        });
-
-        btn_consultarTodo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_consultarTodo.setText("Consultar Registro");
-        btn_consultarTodo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_consultarTodoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -199,58 +189,24 @@ public class ManipulaEstudiantes extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(gUI_Botones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(btn_consulta)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_consultarTodo)
-                        .addGap(27, 27, 27)
-                        .addComponent(btn_reportes)))
-                .addContainerGap(203, Short.MAX_VALUE))
+                        .addComponent(gUI_Botones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(gUI_Botones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_reportes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_consultarTodo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(15, 15, 15))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btn_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultaActionPerformed
-       if(evt.getSource() == btn_consulta){
-           ce.consultarCarnet(JOptionPane.showInputDialog("Digite el carnet del estudiante que desea consultar: "));
-       }
-    }//GEN-LAST:event_btn_consultaActionPerformed
-
-    private void btn_consultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultarTodoActionPerformed
-        if(evt.getSource() == btn_consultarTodo){
-            JOptionPane.showMessageDialog(null,ce.listaEstudiantes());
-        }
-    }//GEN-LAST:event_btn_consultarTodoActionPerformed
-
-    private void btn_reportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reportesActionPerformed
-        if(evt.getSource() == btn_reportes){
-            VentanaReportes reporte = new VentanaReportes();
-            reporte.setVisible(true);
-        }
-    }//GEN-LAST:event_btn_reportesActionPerformed
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_consulta;
-    private javax.swing.JButton btn_consultarTodo;
-    private javax.swing.JButton btn_reportes;
     private Vista.GUI_Botones gUI_Botones1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -258,6 +214,7 @@ public class ManipulaEstudiantes extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lbl_carnet;
     private javax.swing.JLabel lbl_correo;
+    private javax.swing.JLabel lbl_mensaje;
     private javax.swing.JLabel lbl_nombre;
     private javax.swing.JTextField txt_carnet;
     private javax.swing.JTextField txt_correo;

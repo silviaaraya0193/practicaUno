@@ -7,6 +7,7 @@
 package Controlador;
 
 import Modelo.Estudiante;
+import Modelo.ManejoEstudiantes;
 import Vista.ManipulaEstudiantes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,10 +29,12 @@ public class Controlador_Estudiantes implements ActionListener{
     public static final int ELIMINAR = 7;
     private ManipulaEstudiantes manipulaEstudiante;
     private ArrayList<Estudiante> array;
+    private ManejoEstudiantes manejo;
     
     public Controlador_Estudiantes(ManipulaEstudiantes manipulaEstudiante) {
         this.manipulaEstudiante = manipulaEstudiante;
         array = new ArrayList();
+        manejo = new ManejoEstudiantes(manipulaEstudiante);
     }
 
     
@@ -40,8 +43,8 @@ public class Controlador_Estudiantes implements ActionListener{
         int codigo = this.manipulaEstudiante.get_CodigoPorFuente(e.getSource());
         switch(codigo){
             case AGREGAR:if(manipulaEstudiante.txtLlenos()){
-                if(verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
-                addEstudiante(manipulaEstudiante.getEstudiante());
+                if(manejo.verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
+                manejo.addEstudiante(manipulaEstudiante.getEstudiante());
                     //System.out.println("agregados: \n"+listaEstudiantes());
                 JOptionPane.showMessageDialog(null,"Estudiante Registrado");
                 manipulaEstudiante.limpiarCampos();
@@ -53,12 +56,12 @@ public class Controlador_Estudiantes implements ActionListener{
             break;
             case ELIMINAR: if(manipulaEstudiante.txtCarnet()){
                // System.out.println("entra a eliminar carnet lleno");//entra hasta aqui
-                if(verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
+                if(manejo.verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
                 JOptionPane.showMessageDialog(null,"Error, Estudiante No Existente");
                 manipulaEstudiante.limpiarCampos();
                 //}
             } else {
-                deleteEstudiante(manipulaEstudiante.getTxtCarnet());
+                manejo.deleteEstudiante(manipulaEstudiante.getTxtCarnet());
                 JOptionPane.showMessageDialog(null,"Estudiante Eliminado");
                 //System.out.println("lista luego de eliminar: \n"+listaEstudiantes());
                 manipulaEstudiante.limpiarCampos();
@@ -66,22 +69,22 @@ public class Controlador_Estudiantes implements ActionListener{
             }
             break;
             case BUSCAR: if(manipulaEstudiante.txtCarnet()){
-                if(verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
+                if(manejo.verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
                 JOptionPane.showMessageDialog(null,"Estudiante No Existente");
                 manipulaEstudiante.limpiarCampos();
              }else{ 
-                JOptionPane.showMessageDialog(null,buscarEstudiante(manipulaEstudiante.getTxtCarnet()));
+                JOptionPane.showMessageDialog(null,manejo.buscarEstudiante(manipulaEstudiante.getTxtCarnet()));
                 //JOptionPane.showMessageDialog(null,listaEstudiantes());
                 manipulaEstudiante.limpiarCampos();
             } 
             }
             break;
             case EDITAR: if(manipulaEstudiante.txtCarnet()){
-                if(verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
+                if(manejo.verificarEstudiante(manipulaEstudiante.getTxtCarnet())){
                 JOptionPane.showMessageDialog(null,"Estudiante No Existente");
                 manipulaEstudiante.limpiarCampos();
             } else if(manipulaEstudiante.txtCarnet()){
-                editarNombre(JOptionPane.showInputDialog("Digite el nuevo nombre del estudiante: "));
+                manejo.editarNombre(JOptionPane.showInputDialog("Digite el nuevo nombre del estudiante: "));
                 JOptionPane.showMessageDialog(null,"Nombre Modificado Exitosamente");
                     //System.out.println("lista nombre modificado: "+listaEstudiantes());
                 manipulaEstudiante.limpiarCampos();
@@ -91,65 +94,65 @@ public class Controlador_Estudiantes implements ActionListener{
             }
     }
     
-    //metodo para agregar estudiantes
-    public void addEstudiante(Estudiante estudiante){
-        array.add(estudiante);
-    }
-    
-    //metodo para eliminar estudiante
-    public void deleteEstudiante(String carnet){
-        for(int i=0; i< array.size(); i++){
-            if(buscarEstudiante(carnet)!= null){
-                array.remove(buscarEstudiante(carnet));
-            }
-        }
-    }
-    
-    //metodo para buscar estudiante
-    public Estudiante buscarEstudiante(String carnet){
-        for(int i=0; i<array.size(); i++){
-            if(array.get(i).getCarnet().equalsIgnoreCase(carnet)){
-                return array.get(i);//el carnet si existe
-            } 
-        }
-        return null;
-    }
-    
-    //metodo para editar estudiante
-    public void editarNombre(String nombreNuevo){
-        for(int i =0; i < array.size(); i++){
-            if(array.get(i).getCarnet().equalsIgnoreCase(manipulaEstudiante.getTxtCarnet())){
-            array.get(i).setNombre(nombreNuevo);
-            }
-        }
-    }
-    
-    //metodo para mostrar lista de estudiante
-    public String listaEstudiantes(){
-        String hilera = "";
-        for(int i =0; i< array.size(); i++){
-            hilera += array.get(i).toString();
-        }
-        return hilera;
-    }
-    
-    public boolean verificarEstudiante(String numero){
-        for (int i =0; i< array.size(); i++) {
-            if(array.get(i).getCarnet().equalsIgnoreCase(numero)){
-                return false;//el carnet es igual
-            }//fin del if
-        }//fin del for
-        return true;//el carnet es diferente
-    }//fin del metodo que verifica si existe el estudiante ya registrado
-    
-   //metodo para consultar estudiante por carnet
-    public String consultarCarnet(String carnet){
-        String estudiante="";
-        for(int i =0; i< array.size(); i++){
-            if(array.get(i).getCarnet().equalsIgnoreCase(carnet)){
-                estudiante = array.get(i).toString();
-            }
-        }
-        return estudiante;
-    }
+//    //metodo para agregar estudiantes
+//    public void addEstudiante(Estudiante estudiante){
+//        array.add(estudiante);
+//    }
+//    
+//    //metodo para eliminar estudiante
+//    public void deleteEstudiante(String carnet){
+//        for(int i=0; i< array.size(); i++){
+//            if(buscarEstudiante(carnet)!= null){
+//                array.remove(buscarEstudiante(carnet));
+//            }
+//        }
+//    }
+//    
+//    //metodo para buscar estudiante
+//    public Estudiante buscarEstudiante(String carnet){
+//        for(int i=0; i<array.size(); i++){
+//            if(array.get(i).getCarnet().equalsIgnoreCase(carnet)){
+//                return array.get(i);//el carnet si existe
+//            } 
+//        }
+//        return null;
+//    }
+//    
+//    //metodo para editar estudiante
+//    public void editarNombre(String nombreNuevo){
+//        for(int i =0; i < array.size(); i++){
+//            if(array.get(i).getCarnet().equalsIgnoreCase(manipulaEstudiante.getTxtCarnet())){
+//            array.get(i).setNombre(nombreNuevo);
+//            }
+//        }
+//    }
+//    
+//    //metodo para mostrar lista de estudiante
+//    public String listaEstudiantes(){
+//        String hilera = "";
+//        for(int i =0; i< array.size(); i++){
+//            hilera += array.get(i).toString();
+//        }
+//        return hilera;
+//    }
+//    
+//    public boolean verificarEstudiante(String numero){
+//        for (int i =0; i< array.size(); i++) {
+//            if(array.get(i).getCarnet().equalsIgnoreCase(numero)){
+//                return false;//el carnet es igual
+//            }//fin del if
+//        }//fin del for
+//        return true;//el carnet es diferente
+//    }//fin del metodo que verifica si existe el estudiante ya registrado
+//    
+//   //metodo para consultar estudiante por carnet
+//    public String consultarCarnet(String carnet){
+//        String estudiante="";
+//        for(int i =0; i< array.size(); i++){
+//            if(array.get(i).getCarnet().equalsIgnoreCase(carnet)){
+//                estudiante = array.get(i).toString();
+//            }
+//        }
+//        return estudiante;
+//    }
 }

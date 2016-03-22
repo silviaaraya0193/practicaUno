@@ -24,6 +24,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.controlador = new Controlador_VentanaPrincipal();
         this.bn_salida.addActionListener(controlador);
         this.menuManipula.addActionListener(controlador);
+        this.jmenuConsulta.addActionListener(controlador);
+        this.jmenuReportes.addActionListener(controlador);
         this.setLocationRelativeTo(null);
     }
 
@@ -43,6 +45,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         bn_salida = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         menuManipula = new javax.swing.JMenuItem();
+        jmenuConsulta = new javax.swing.JMenuItem();
+        jmenuReportes = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -72,6 +76,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu2.add(menuManipula);
+
+        jmenuConsulta.setText("Consulta Estudiantes");
+        jMenu2.add(jmenuConsulta);
+
+        jmenuReportes.setText("Reporte Estudiantes");
+        jMenu2.add(jmenuReportes);
 
         menuPrincipal.add(jMenu2);
 
@@ -142,6 +152,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu btn_salir;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jmenuConsulta;
+    private javax.swing.JMenuItem jmenuReportes;
     private javax.swing.JLabel lbl_principal;
     private javax.swing.JMenuItem menuManipula;
     private javax.swing.JMenuBar menuPrincipal;

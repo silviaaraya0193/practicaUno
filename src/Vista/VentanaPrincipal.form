@@ -40,6 +40,16 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuManipulaActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmenuConsulta">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Consulta Estudiantes"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmenuReportes">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Reporte Estudiantes"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
       </SubComponents>

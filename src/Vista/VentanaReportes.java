@@ -6,8 +6,9 @@
 
 package Vista;
 
-import Modelo.Estudiante;
+import Modelo.ManejoEstudiantes;
 import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,20 +20,14 @@ public class VentanaReportes extends javax.swing.JFrame {
     /**
      * Creates new form VentanaReportes
      */
-    private Estudiante estud;
+    private ManejoEstudiantes manejo;
+    private ManipulaEstudiantes manipula;
     
     public VentanaReportes() {
         initComponents();
-        DefaultTableModel modelo = (DefaultTableModel) jtableUno.getModel();
         this.setLocationRelativeTo(null);
-        ArrayList<Estudiante> lista = new ArrayList();
-        Object[] fila = new Object[modelo.getColumnCount()];
-        for(int i=0; i< lista.size(); i++){
-            fila[0] = lista.get(i).getNombre();
-            fila[1] = lista.get(i).getCarnet();
-            fila[2] = lista.get(i).getEmail();
-            modelo.addRow(fila);
-        }
+        mostrarDatos();
+   
     }
 
     /**
@@ -45,7 +40,7 @@ public class VentanaReportes extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jtableUno = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,16 +50,22 @@ public class VentanaReportes extends javax.swing.JFrame {
 
         jtableUno.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Carnet", "E-mail"
             }
         ));
-        jScrollPane1.setViewportView(jtableUno);
+        jScrollPane2.setViewportView(jtableUno);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,7 +77,7 @@ public class VentanaReportes extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -85,21 +86,31 @@ public class VentanaReportes extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-
+   
+    private void mostrarDatos(){
+        DefaultTableModel model = new DefaultTableModel(); 
+        jtableUno = new JTable();
+        jtableUno.setModel(model);
+        model.addColumn("Nombre");
+        model.addColumn("Carnet555");
+        model.addColumn("E-mail");
+        jtableUno.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        jtableUno.getTableHeader().setReorderingAllowed(false);
+        
+//        manejo.reportes();
+//        model.addRow(manejo.reportes());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jtableUno;
     // End of variables declaration//GEN-END:variables
 }
