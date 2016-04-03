@@ -8,7 +8,7 @@ package Vista;
 
 import Controlador.Controlador_Estudiantes;
 import Modelo.Estudiante;
-import Modelo.ManejoEstudiantes;
+import Modelo.ManejadorRegistros;
 
 /**
  *
@@ -20,12 +20,12 @@ public class ManipulaEstudiantes extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     private Controlador_Estudiantes ce;
-    private ManejoEstudiantes me;
+    private ManejadorRegistros me;
     
     public ManipulaEstudiantes() {
         initComponents();
         ce = new Controlador_Estudiantes(this);
-        me = new ManejoEstudiantes(this);
+        me = new ManejadorRegistros();
         this.gUI_Botones1.agregar_evento(ce);
         this.setLocationRelativeTo(null);
         

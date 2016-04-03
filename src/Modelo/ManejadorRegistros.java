@@ -7,6 +7,7 @@
 package Modelo;
 
 import Vista.ManipulaEstudiantes;
+import Vista.VentanaCurso;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,15 +17,21 @@ import javax.swing.JOptionPane;
  *
  * @author Silvia Araya J
  */
-public class ManejoEstudiantes {
+public class ManejadorRegistros {
     private ManipulaEstudiantes manipulaEstudiante;
     private ArrayList<Estudiante> array;
     private Estudiante estudiante;
+    private VentanaCurso ventana;
+    private ArrayList<Curso> arrayCursos;
+    private int numEstudiantes;
     
-    public ManejoEstudiantes(ManipulaEstudiantes manipulaEstudiante) {
+    public ManejadorRegistros() {
         this.manipulaEstudiante = manipulaEstudiante;
-        array = new ArrayList();
+        array = new ArrayList<Estudiante>();
+        arrayCursos = new ArrayList<Curso>();
         estudiante = new Estudiante();
+        numEstudiantes = 0;
+        this.ventana = ventana;
     }
     
     //metodo para agregar estudiantes
@@ -181,5 +188,62 @@ public class ManejoEstudiantes {
         }else{
             throw new MyException("Error en el nombre");
         }
+    }
+    //metodos de los cursos, registro, eliminar, modificar, consultar, asignar estudiante a un curso.
+    //metodos de las validaciones con las expresiones regulares y el try catch
+    //metodo para validar que el curso no haya sido ya registrado
+    public boolean verificarCurso(String sigla){
+        for(int i=0; i<arrayCursos.size(); i++){
+            if(arrayCursos.get(i).getSigla().equalsIgnoreCase(sigla)){
+                return false;//el curso ya existe
+            }
+        }
+        return true;//el curso no existe registrado
+    }
+    public void agregarCursos(Curso curso){
+        arrayCursos.add(curso);
+    }
+    
+    //metodo para eliminar curso
+    public void eliminarCurso(String sigla){
+        for(int i=0;i<arrayCursos.size();i++){
+            if(arrayCursos.get(i).getSigla().equalsIgnoreCase(sigla)){
+                arrayCursos.remove(buscarCurso(sigla));
+            }
+        }
+    }
+    //metodo para buscar curso
+    public Curso buscarCurso(String sigla){
+        for(int i=0; i<arrayCursos.size(); i++){
+            if(arrayCursos.get(i).getSigla().equalsIgnoreCase(sigla)){
+                return arrayCursos.get(i);//el curso si existe
+            } 
+        }
+        return null;
+    }
+    //metodo para modificar un curso
+    public void modificarCurso(String sigla, String nombre){
+        for(int i=0;i<arrayCursos.size(); i++){
+                arrayCursos.get(i).setSigla(sigla);
+                arrayCursos.get(i).setNombre(nombre);
+        }
+    }
+    //metodo para la consulta de un curso
+    public String consultarCurso(){
+        String datos="";
+       // if(verificarCurso(ventana.getTxt_Sigla())){
+            for(int i=0;i<arrayCursos.size();i++){
+                datos = arrayCursos.get(i).toString();
+           // }
+        }
+        return datos;
+    }
+    public Curso asignarCurso(Curso e){
+        if(numEstudiantes < 25){
+            for(int i =0; i<arrayCursos.size();i++){
+                arrayCursos.get(i).setCurso(e);
+                numEstudiantes++;
+            }
+    } return null;
     }
 }

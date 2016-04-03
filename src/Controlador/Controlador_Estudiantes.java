@@ -7,7 +7,7 @@
 package Controlador;
 
 import Modelo.Estudiante;
-import Modelo.ManejoEstudiantes;
+import Modelo.ManejadorRegistros;
 import Vista.ManipulaEstudiantes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,12 +29,12 @@ public class Controlador_Estudiantes implements ActionListener{
     public static final int ELIMINAR = 7;
     private ManipulaEstudiantes manipulaEstudiante;
     private ArrayList<Estudiante> array;
-    private ManejoEstudiantes manejo;
+    private ManejadorRegistros manejo;
     
     public Controlador_Estudiantes(ManipulaEstudiantes manipulaEstudiante) {
         this.manipulaEstudiante = manipulaEstudiante;
         array = new ArrayList();
-        manejo = new ManejoEstudiantes(manipulaEstudiante);
+        manejo = new ManejadorRegistros();
     }
 
     

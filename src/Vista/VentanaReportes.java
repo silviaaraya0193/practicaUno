@@ -6,7 +6,7 @@
 
 package Vista;
 
-import Modelo.ManejoEstudiantes;
+import Modelo.ManejadorRegistros;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +20,7 @@ public class VentanaReportes extends javax.swing.JFrame {
     /**
      * Creates new form VentanaReportes
      */
-    private ManejoEstudiantes manejo;
+    private ManejadorRegistros manejo;
     private ManipulaEstudiantes manipula;
     
     public VentanaReportes() {

@@ -6,7 +6,7 @@
 
 package Vista;
 
-import Modelo.ManejoEstudiantes;
+import Modelo.ManejadorRegistros;
 
 /**
  *
@@ -18,7 +18,7 @@ public class VentanaConsultaCarnet extends javax.swing.JFrame {
      * Creates new form VentanaPorCarnet
      */
     private VentanaConsulta consultar;
-    private ManejoEstudiantes manejo;
+    private ManejadorRegistros manejo;
     
     public VentanaConsultaCarnet() {
         initComponents();
@@ -26,6 +26,7 @@ public class VentanaConsultaCarnet extends javax.swing.JFrame {
         if(manejo.verificarEstudiante(consultar.getTxtCarnet())){
             jtxt_datos.setText(manejo.consultarCarnet(consultar.getTxtCarnet()));
         }
+        this.setLocationRelativeTo(null);
         
     }
 

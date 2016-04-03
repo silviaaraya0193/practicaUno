@@ -17,6 +17,7 @@ public class VentanaConsulta extends javax.swing.JFrame {
      */
     public VentanaConsulta() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
